@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
-  <link rel="stylesheet" href="/styles.css"> <!-- optional -->
+  <link rel="stylesheet" href="/styles.css">
+ <!-- optional -->
 </head>
 <body>
+
+  <%- include('partials/menu') %>
+
+<div id="container">
+
+<div id="titleFormSection">
+
   <h1><%= title %></h1>
 
-  <form action="<%= category.id ? '/categories/' + category.id : '/categories' %>" method="POST">
+<a href="/categories" class="btn-primary">Back to categories</a>
+</div>
+
+<div id="afterForm">
+
+  <form id="formSection" action="<%= category.id ? '/categories/' + category.id : '/categories' %>" method="POST">
     <div>
       <label for="name">Category Name:</label>
       <input type="text" id="name" name="name" value="<%= category.name || '' %>" required>
@@ -18,10 +31,20 @@
       <label for="description">Description:</label>
       <textarea id="description" name="description"><%= category.description || '' %></textarea>
     </div>
+    <!-- ADMIN PASSWORD FIELD -->
+  <input type="password" name="adminPassword" placeholder="Admin password required" required>
 
-    <button type="submit"><%= category.id ? 'Update' : 'Create' %></button>
+
+    <button id="btn-cat" type="submit"><%= category.id ? 'Update' : 'Create' %></button>
   </form>
+</div>
 
-  <a href="/categories">Back to categories</a>
+</div>
+
+  
+  
+
+
+  
 </body>
 </html>

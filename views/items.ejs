@@ -1,44 +1,76 @@
-<!-- Shows:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
 
-Product name
+  <%- include('partials/menu') %>
 
-Brand
+  <div id="container">
 
-Shade
+    <div id="titleSection">
+      <h1><%= title %></h1>
 
-Price
+      
 
-Description
+       <a class="btn-primary" href="/items/new">Add New Item</a><br><br>
 
-Stock count
+ <a href="/categories" class="btn-primary"> Back to categories</a>
 
--->
+</div>
 
-<h1><%= title %></h1>
+<div id="nav2">
 
-<% if (items.length === 0) { %>
-  <p>No items yet.</p>
-<% } %>
+      <% if (typeof category !== "undefined") { %>
 
-<ul>
-  <% items.forEach(item => { %>
-    <li>
-      <strong><%= item.name %></strong><br>
-      Brand: <%= item.brand %><br>
-      Shade: <%= item.shade %><br>
-      Price: $<%= item.price %><br>
-      Stock: <%= item.stock %><br>
-      Description: <%= item.description %><br>
+        
+        <p><%= category.description %></p>
 
-      <a href="/items/<%= item.id %>/edit">Edit</a>
-      <form action="/items/<%= item.id %>/delete" method="POST" style="display:inline;">
-        <button type="submit">Delete</button>
-      </form>
-    </li>
-    <hr>
-  <% }) %>
-</ul>
+       
 
-<a href="/items/new">Add New Item</a>
+      <% } %>
 
-<a href="/categories">Back to categories</a>
+</div>
+
+  
+
+    <% if (items.length === 0) { %>
+      <p>No products in this category yet.</p>
+    <% } else { %>
+      <div id="categoryCards">
+
+        <% items.forEach(item => { %>
+          <div class="categoryCard">
+            <h2><%= item.name %></h2>
+            <p><strong>Brand:</strong> <%= item.brand %></p>
+            <p><strong>Shade:</strong> <%= item.shade %></p>
+            <p><strong>Price:</strong> $<%= item.price %></p>
+            <p><strong>Stock:</strong> <%= item.stock %></p>
+            <p><%= item.description %></p>
+
+            <div id="editSection">
+            <a href="/items/<%= item.id %>/edit">Edit</a>
+
+            <form action="/items/<%= item.id %>/delete" method="POST">
+              <input type="password" name="adminPassword" placeholder="Admin password" required>
+              <button type="submit">Delete</button>
+            </form>
+
+</div>
+
+          </div>
+        <% }) %>
+
+      </div>
+    <% } %>
+
+   
+   
+
+  </div>
+
+</body>
+</html>

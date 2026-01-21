@@ -1,11 +1,22 @@
+require('dotenv').config();
+
 const express = require("express");
 const categoryRoutes = require("./routes/categoryRoutes");
 const itemRoutes = require("./routes/itemRoutes");
 
+
 const app = express();
+
+
+
 
 // Parse form data
 app.use(express.urlencoded({ extended: true }));
+
+
+// Serve static files from "public" folder
+app.use(express.static("public"));
+
 
 app.get("/", (req, res) => {
   res.redirect("/categories");

@@ -77,7 +77,12 @@ async function itemsInCategory(req, res) {
   // get items with that category_id
   const items = await db.getItemsByCategoryId(categoryId);
 
-  res.render("items", { title: `${category.name} Products`, items });
+  res.render("items", {
+  title: `${category.name} Products`,
+  category,
+  items
+});
+
 }
 
 module.exports = {

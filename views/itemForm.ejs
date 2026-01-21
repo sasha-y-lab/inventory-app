@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
-  <style>
-    form div { margin-bottom: 10px; }
-    label { display: inline-block; width: 100px; font-weight: bold; }
-    input, textarea { width: 300px; }
-    button { padding: 5px 10px; }
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
+<%- include('partials/menu') %>
+
+<div id="container">
+
+<div id="titleSection">
+
 <h1><%= title %></h1>
 
-<form action="<%= item.id ? '/items/' + item.id : '/items' %>" method="POST">
+<a href="/items" class="btn-primary">Back to Items</a>
+
+<a href="/categories" class="btn-primary">Back to categories</a>
+
+</div>
+
+<div id="afterForm">
+
+<form id="formSection" action="<%= item.id ? '/items/' + item.id : '/items' %>" method="POST">
 
   <div>
     <label for="name">Product Name:</label>
@@ -61,12 +70,21 @@
     <textarea id="description" name="description"><%= item.description || '' %></textarea>
   </div>
 
-  <button type="submit"><%= item.id ? 'Update' : 'Create' %></button>
+<!-- ADMIN PASSWORD FIELD -->
+  <input type="password" name="adminPassword" placeholder="Admin password required" required>
+
+  
+  <button id="btn-cat" type="submit"><%= item.id ? 'Update' : 'Create' %></button>
 </form>
+</div>
 
-<a href="/items">Back to Items</a>
 
-<a href="/categories">Back to categories</a>
+
+</div>
+
+
+
+
 
 </body>
 </html>

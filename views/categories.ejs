@@ -8,27 +8,48 @@ Link to view that category
 
 -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <%- include('partials/menu') %>
+
+  <div id="container">
+
+<div id="titleSection">
+
 <h1><%= title %></h1>
 
-<ul>
+<a href="/categories/new" class="btn-primary">Add New Category</a>
+
+</div>
+
+<div id="categoryCards">
   <% categories.forEach(category => { %>
-    <li>
-      <!-- Clickable name goes to items in that category -->
-      <a href="/categories/<%= category.id %>/items"><%= category.name %></a> - <%= category.description %>
-      
+    <div class="categoryCard">
+      <h2><a href="/categories/<%= category.id %>/items"><%= category.name %></a></h2>
+      <p><%= category.description %></p>
+
       <!-- Edit link -->
       <a href="/categories/<%= category.id %>/edit">Edit</a>
-      
+
       <!-- Delete form (POST) -->
       <form action="/categories/<%= category.id %>/delete" method="POST" style="display:inline;">
+        <input type="password" name="adminPassword" placeholder="Admin password" required>
         <button type="submit">Delete</button>
       </form>
-    </li>
-    <hr>
+    </div>
   <% }) %>
-</ul>
-
-<a href="/categories/new">Add New Category</a>
+</div>
 
 
 
+
+
+</body>
+</html>
