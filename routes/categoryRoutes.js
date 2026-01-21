@@ -17,5 +17,8 @@ router.get("/categories/:id", categoryController.detail);   // :id route last
 router.get("/categories", categoryController.list);
 
 
+// NEW: items in a category
+router.get("/categories/:id/items", categoryController.itemsInCategory);
+
 
 module.exports = router;

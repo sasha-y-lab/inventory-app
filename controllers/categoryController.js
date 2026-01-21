@@ -67,6 +67,19 @@ async function remove(req, res) {
   res.redirect("/categories");
 }
 
+
+// NEW function: items in a category
+async function itemsInCategory(req, res) {
+  const categoryId = req.params.id;
+  const category = await db.getCategoryById(categoryId);
+  if (!category) return res.send("Category not found");
+
+  // get items with that category_id
+  const items = await db.getItemsByCategoryId(categoryId);
+
+  res.render("items", { title: `${category.name} Products`, items });
+}
+
 module.exports = {
   list,
   detail,
@@ -75,4 +88,5 @@ module.exports = {
   editForm,
   update,
   remove,
+  itemsInCategory,
 };

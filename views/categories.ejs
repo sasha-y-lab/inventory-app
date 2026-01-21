@@ -11,14 +11,24 @@ Link to view that category
 <h1><%= title %></h1>
 
 <ul>
-  <% categories.forEach(cat => { %>
+  <% categories.forEach(category => { %>
     <li>
-      <a href="/categories/<%= cat.id %>"><%= cat.name %></a>
-      <a href="/categories/<%= cat.id %>/edit">Edit</a>
-      <form action="/categories/<%= cat.id %>/delete" method="POST" style="display:inline;">
+      <!-- Clickable name goes to items in that category -->
+      <a href="/categories/<%= category.id %>/items"><%= category.name %></a> - <%= category.description %>
+      
+      <!-- Edit link -->
+      <a href="/categories/<%= category.id %>/edit">Edit</a>
+      
+      <!-- Delete form (POST) -->
+      <form action="/categories/<%= category.id %>/delete" method="POST" style="display:inline;">
         <button type="submit">Delete</button>
       </form>
     </li>
+    <hr>
   <% }) %>
 </ul>
+
 <a href="/categories/new">Add New Category</a>
+
+
+

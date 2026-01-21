@@ -15,7 +15,7 @@
 <h1><%= title %></h1>
 
 <form action="<%= item.id ? '/items/' + item.id : '/items' %>" method="POST">
-  
+
   <div>
     <label for="name">Product Name:</label>
     <input type="text" id="name" name="name" value="<%= item.name || '' %>" required>
@@ -24,6 +24,16 @@
   <div>
     <label for="brand">Brand:</label>
     <input type="text" id="brand" name="brand" value="<%= item.brand || '' %>" required>
+  </div>
+
+  <div>
+    <label for="category_id">Category:</label>
+    <select id="category_id" name="category_id" required>
+      <option value="">--Select Category--</option>
+      <% categories.forEach(cat => { %>
+        <option value="<%= cat.id %>" <%= item.category_id == cat.id ? "selected" : "" %>><%= cat.name %></option>
+      <% }) %>
+    </select>
   </div>
 
   <div>
@@ -55,6 +65,8 @@
 </form>
 
 <a href="/items">Back to Items</a>
+
+<a href="/categories">Back to categories</a>
 
 </body>
 </html>

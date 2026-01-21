@@ -1,5 +1,6 @@
 const express = require("express");
 const categoryRoutes = require("./routes/categoryRoutes");
+const itemRoutes = require("./routes/itemRoutes");
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.get("/", (req, res) => {
 
 // Use category routes
 app.use("/", categoryRoutes);
+
+app.use("/", itemRoutes);
 
 // Set view engine
 app.set("view engine", "ejs");
