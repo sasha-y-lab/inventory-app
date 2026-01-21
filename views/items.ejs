@@ -1,0 +1,31 @@
+<!-- Shows:
+
+Product name
+
+Brand
+
+Shade
+
+Price
+
+Description
+
+Stock count
+
+-->
+
+<h1><%= title %></h1>
+
+<div class="item-card">
+  <h2><%= item.name %> (<%= item.brand %>)</h2>
+  <p>Shade: <%= item.shade %></p>
+  <p>Price: $<%= item.price %></p>
+  <p>Stock: <%= item.stock %> units</p>
+  <p>Description: <%= item.description %></p>
+  <a href="/items/<%= item.id %>/edit">Edit</a>
+  <form action="/items/<%= item.id %>/delete" method="POST" style="display:inline;">
+    <button type="submit">Delete</button>
+  </form>
+</div>
+
+<a href="/items/new">Add New Item</a>
